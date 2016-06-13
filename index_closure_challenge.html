@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+
+			var x=0,y=0,funcs = [];
+
+			for (; x<5;x++) {
+
+				// solution 1
+				(function() {
+					var t = x;
+					funcs.push(function() {
+						console.log(t);
+					});
+				})();
+
+				// solution 2
+				// function j(t) {
+				// 	funcs.push(function() {
+				// 		console.log(t);
+				// 	});
+				// }
+				//
+				// j(x);
+			}
+
+			for (; y<5; y++) {
+				funcs[y]();
+			}
+
+		</script>
+	</body>
+</html>

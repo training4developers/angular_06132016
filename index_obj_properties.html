@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+
+			function getFullName() {
+				console.log(this);
+				return this.firstName + ' ' + this.lastName;
+			}
+
+
+			var person = {
+				firstName: 'Les',
+				lastName: 'Longino',
+				getFullName: getFullName
+			};
+
+			person.getFullName();
+
+			var t = person.getFullName;
+
+			//t();
+
+			console.log(t === person.getFullName);
+
+
+
+
+		</script>
+	</body>
+</html>

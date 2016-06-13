@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+
+			var t;
+			console.log(typeof t);
+			t = 10;
+			console.log(typeof t);
+			t = 'test';
+			console.log(typeof t);
+			t = true;
+			console.log(typeof t);
+			t = null;
+			console.log(typeof t);
+
+			var g = 'prop123';
+
+			t = {
+				id: 3,
+				'id2': 3,
+				'id-2': 3,
+				[g]: 'passed'
+ 			};
+
+			t.newProp = 'school is cool';
+
+			delete t.newProp;
+
+			console.dir(t);
+
+			t = [1,2,3,4];
+			console.log(typeof t);
+
+
+		</script>
+	</body>
+</html>

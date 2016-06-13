@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+
+				Color Filter: <input ng-model="colorFilter" type="text">
+
+				<ul>
+					<li ng-repeat="color in colors | filter:colorFilter | orderBy:'toString()' track by $index">{{color}}</li>
+				</ul>
+
+				<label>
+					New Color: <input type="text" ng-model="newColor">
+				</label>
+				<button ng-click="addColor()">Add Color</button>
+
+				<!-- <ul>
+					<li ng-repeat="car in cars | orderBy:'year'">{{car.make}} {{car.model}}</li>
+				</ul> -->
+
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+			angular.module('MyApp', [])
+				.controller('MyCtrl', function($scope) {
+
+					$scope.addColor = function() {
+						$scope.colors.push($scope.newColor);
+						console.dir($scope.colors);
+						//$scope.$digest();
+					};
+
+					$scope.colors = [
+						'crimson','green','saffron','white',
+						'red','blue','gold','brown','black','pink','purple'];
+
+					$scope.cars = [
+						{ id: 1, make: 'Ford', model:'Mustang', year: 2015, color:'orange' },
+						{ id: 2, make: 'Honda', model:'Accord', year: 2015, color:'black' },
+						{ id: 3, make: 'Toyota', model:'Tacoma', year: 2008, color:'blue' },
+						{ id: 4, make: 'Toyota', model:'Corolla', year: 2014, color:'silver' }
+					];
+
+
+				});
+
+		</script>
+	</body>
+</html>

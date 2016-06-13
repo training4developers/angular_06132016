@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+
+
+
+			function outer() {
+
+				// start of task 1
+				console.log('starting');
+
+				var t = 3;
+
+				try {
+
+					setTimeout(
+						// start of task 2
+						function inner() {
+							console.log(t);
+							console.log('all done');
+							throw 'time for a break';
+						}
+						// end of task 2
+						, 3000);
+
+				} catch(err) {
+					console.log(err);
+				}
+
+				console.log('waiting');
+				// end of task 1
+
+			}
+
+			outer();
+
+
+		</script>
+	</body>
+</html>

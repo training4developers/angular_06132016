@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+
+			var myGlobalVar = "global value";
+
+			function outer() {
+
+				var t = 4;
+
+				return function inner() {
+
+					var h = 2;
+
+					// global scoped variable
+					console.log(window.myGlobalVar);
+					// reference via closure
+					console.log(t);
+					// reference local variable
+					console.log(h);
+
+				};
+
+			}
+
+
+
+		</script>
+	</body>
+</html>

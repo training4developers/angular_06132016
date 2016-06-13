@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+
+			var daddyJ = {
+				amt: 1000,
+				address: {
+					street: '1600 Pennsylvania Ave.',
+					city: 'Washington',
+					notAState: 'DC'
+				}
+			};
+
+			var littleL = Object.create(daddyJ);
+			littleL.amt = 200;
+			littleL.address.city = 'El Mirage';
+
+			console.log(littleL.address.city);
+			//daddyJ.amt = 2000;
+			// delete littleL.amt;
+			// console.log(littleL.amt);
+			console.dir(littleL);
+
+
+
+
+		</script>
+	</body>
+</html>

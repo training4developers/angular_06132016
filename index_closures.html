@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+
+			function outer() {
+
+				var t = 3;
+
+				setTimeout(function() {
+					t = 22;
+				}, 1000);
+
+				return function inner() {
+					console.log(t);
+				};
+			}
+
+			var fn = outer();
+			console.dir(fn);
+			fn();
+
+			setTimeout(function() {
+				fn();
+			}, 998);
+
+
+		</script>
+	</body>
+</html>

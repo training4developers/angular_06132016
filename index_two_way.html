@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				{{message}}<br>
+				<input ng-model="message" type="text">
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+			angular.module('MyApp', [])
+				.controller('MyCtrl', function($scope) {
+					$scope.message = 'Happy JavaScripting!';
+
+					$scope.$watch(function() {
+						console.log('$digest loop');
+
+						var count = 1000000000;
+						while(count--) {
+							var t = count;
+						}
+					});
+
+
+				});
+
+		</script>
+	</body>
+</html>

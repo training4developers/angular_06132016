@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+	</head>
+	<body>
+		<script>
+			'use strict';
+
+			function doIt(a,b) {
+				console.dir(this);
+				console.log(a,b);
+			}
+
+			var suraj = {
+				oneAmazingFact: 'run marathons',
+				doIt: doIt
+			};
+
+			doIt();
+
+			suraj.doIt();
+
+			console.log(doIt === suraj.doIt);
+
+			suraj.doIt.call({ oneAmazingFact: 'she likes dancing' }, 1, 2);
+
+			suraj.doIt.apply({ oneAmazingFact: 'grow sunflowers' }, [43,57]);
+
+			var fn = suraj.doIt.bind({ oneAmazingFact: 'fast & furious' });
+
+			fn(5,6);
+
+
+		</script>
+	</body>
+</html>

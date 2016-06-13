@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				{{message}}
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+			function myCtrl($log, $timeout, $scope) {
+
+				$scope.message = 'India loves Nepal! Nepal loves India!';
+				$log.log($scope.message);
+
+			}
+
+			myCtrl.$inject = ['$log','$timeout','$scope'];
+
+			//console.log(myCtrl.toString());
+
+			angular.module('MyApp', [])
+				.controller('MyCtrl', myCtrl);
+
+		</script>
+	</body>
+</html>
