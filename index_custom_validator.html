@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				<form name="contactForm" novalidate>
+					<div>
+						<label>Name:
+							<input type="text" name="contactName" ng-model="contact.name" ch-required ch-min-length="6">
+						</label>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.directive("chRequired", function() {
+
+						return {
+							restrict: 'A',
+							require: 'ngModel',
+							link: function(scope, element, attrs, ctrl) {
+
+								function validate(value) {
+
+									if (value == null || String(value).length === 0) {
+										ctrl.$setValidity('ch-required', false);
+										return;
+									} else {
+										ctrl.$setValidity('ch-required', true);
+										return value;
+									}
+
+								}
+
+								ctrl.$formatters.push(validate);
+								ctrl.$parsers.push(validate);
+
+							}
+						}
+
+					})
+					.controller("MyCtrl", function($scope) {
+
+					});
+
+		</script>
+	</body>
+</html>
