@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div my-dir></div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.directive('myDir', function() {
+
+						// directive definition object
+						return {
+
+							compile: function(tElement, tAttrs) {
+
+
+								return {
+									pre: function(scope, element, attrs) {
+									},
+									// post link
+									post: function(scope, element, attrs) {
+										element.html('Hello World!');
+									}
+								};
+
+							}
+						};
+
+					});
+
+
+					// .directive('myDir', function() {
+					//
+					// 	// directive definition object
+					// 	return {
+					//
+					// 		compile: function(tElement, tAttrs) {
+					//
+					// 			// post link
+					// 			return function(scope, element, attrs) {
+					// 				element.html('Hello World!');
+					// 			};
+					//
+					// 		}
+					// 	};
+					//
+					// });
+					// .directive('myDir', function() {
+					//
+					// 	// directive definition object
+					// 	return {
+					// 		// post link
+					// 		link: function(scope, element, attrs) {
+					// 			element.html('Hello World!');
+					// 		}
+					// 	};
+					//
+					// });
+					// .directive('myDir', function() {
+					//
+					// 	// post link
+					// 	return function(scope, element, attrs) {
+					// 		element.html('Hello World!');
+					// 	};
+					//
+					// });
+
+		</script>
+	</body>
+</html>

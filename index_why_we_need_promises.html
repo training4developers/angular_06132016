@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.controller('MyCtrl', function() {
+
+						setTimeout(function() {
+							  console.log('did timeout 1');
+							  setTimeout(function() {
+									  console.log('did timeout 2');
+									  setTimeout(function() {
+											  console.log('did timeout 3');
+												setTimeout(function() {
+													  console.log('did timeout 4');
+														setTimeout(function() {
+															  console.log('did timeout 5');
+													  }, 2000);
+											  }, 2000);
+									  }, 2000);
+							  }, 2000);
+						}, 2000);
+
+						var counter = 0;
+
+						setTimeout(function() {
+							console.log('did timeout 1');
+							counter--;
+							if (counter === 0) {
+								// do some code
+							}
+						}, 2000);
+						counter++;
+						setTimeout(function() {
+							console.log('did timeout 2');
+							counter--;
+							if (counter === 0) {
+								// do some code
+							}
+						}, 4000);
+						counter++;
+						setTimeout(function() {
+							console.log('did timeout 3');
+							counter--;
+							if (counter === 0) {
+								// do some code
+							}
+						}, 6000);
+						counter++;
+						setTimeout(function() {
+							console.log('did timeout 4');
+							counter--;
+							if (counter === 0) {
+								// do some code
+							}
+						}, 8000);
+						counter++;
+
+
+					});
+
+		</script>
+	</body>
+</html>

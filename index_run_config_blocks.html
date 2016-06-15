@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				{{message}}
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.controller('MyCtrl', function() {
+						console.log('myctrl ran');
+
+					})
+					.run(function($rootScope) {
+
+						$rootScope.message = 'Suraj is a wonderful husband!';
+						console.log('run block ran');
+
+					});
+
+		</script>
+	</body>
+</html>

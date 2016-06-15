@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.controller('MyCtrl', function($q) {
+
+						var youngLady = $q.defer();
+
+						var youngMan = youngLady.promise;
+
+						youngMan.then(function(results) {
+							console.log(results);
+							console.log('young man will leap for joy!');
+						}).catch(function() {
+							console.log('young man will weap with sadness!');
+						});
+
+						console.log('young man is waiting...');
+
+						setTimeout(function() {
+							//console.log('young lady loves his friend, and says no...');
+							youngLady.resolve('young lady is going to say yes, because mom and dad told her too...');
+						}, 2000);
+
+					});
+
+		</script>
+	</body>
+</html>

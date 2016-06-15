@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			{{$id}}<br>
+			{{message}}<br>
+			<div my-dir two-way="message" one-way="{{message | uppercase}}" func="doIt2()" ></div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.directive('myDir', function($compile) {
+
+						// directive definition object
+						return {
+							template: '{{$id}}<br>{{msg}}<br><input ng-model="msg" type="text"><br>{{formattedMsg}} '+
+								'<br><button ng-click="clickMe()">Click Me</button>',
+							scope: {
+								msg: '=twoWay',
+								formattedMsg: "@oneWay",
+								clickMe: '&func'
+							},
+							link: function(scope, element, attrs) {
+								console.dir(scope);
+							}
+
+						};
+
+					})
+					.run(function($rootScope) {
+						$rootScope.message = 'Almost time for lunch!';
+
+						$rootScope.doIt2 = function() {
+							console.log("Suraj wants to rest his brain.");
+						};
+
+					});
+
+		</script>
+	</body>
+</html>

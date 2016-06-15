@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.controller('MyCtrl', function($http) {
+
+						var widgetId = '569e892affe5c6030057db6c';
+
+						$http.get('http://t4dclass.herokuapp.com/api/widgets')
+							.then(function(results) {
+								console.dir(results.data);
+							});
+
+						$http.get('http://t4dclass.herokuapp.com/api/widgets/' +
+							encodeURIComponent(widgetId)).then(function(results) {
+								console.dir(results.data);
+							});
+
+						$http.post('http://t4dclass.herokuapp.com/api/widgets', {
+								name: 'New Widget!', description: 'A new widget', size: 'huge',
+								color: 'purple', quantity: 12
+							})
+							.then(function(results) {
+								console.dir(results.data);
+							});
+
+
+
+					});
+
+		</script>
+	</body>
+</html>

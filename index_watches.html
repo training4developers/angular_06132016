@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				{{message}}<br>
+				<input ng-model="message" type="text">
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.controller('MyCtrl', function($scope, $timeout) {
+						$scope.message = 'Hello World!';
+
+						$scope.$watch(function() {
+							console.log('$digest loop executed');
+						});
+
+						$scope.$watch('message', function(newValue, oldValue, scope) {
+							console.log('new value', newValue);
+							console.log('old value', oldValue);
+						});
+
+						setTimeout(function() {
+							console.log('timeout expired');
+
+							$scope.$apply(function() {
+								$scope.message = 'Choice Hotels is the best!';
+							});
+
+							//$scope.$digest();
+
+						}, 2000);
+
+						console.dir($scope);
+
+					});
+
+		</script>
+	</body>
+</html>

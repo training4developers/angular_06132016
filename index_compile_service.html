@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div my-dir></div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.directive('myDir', function($compile) {
+
+						// directive definition object
+						return {
+
+							compile: function(tElement, tAttrs) {
+
+								tElement.append('<div>{{message}}</div>');
+
+								// post link
+								return function(scope, element, attrs) {
+
+									var tpl = '<div>{{message}}</div>';
+									var linkingFn = $compile(tpl);
+									var domElements = linkingFn(scope);
+
+									element.append(domElements);
+
+									scope.message = 'Bob!';
+
+								};
+
+							}
+						};
+
+					});
+
+		</script>
+	</body>
+</html>

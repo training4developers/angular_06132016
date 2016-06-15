@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				{{message | chUpperCase | chAppend:'!!!!'}}
+
+				<ul>
+					<li ng-repeat="country in countries | chContinent:'Asia'">{{country.name}} - {{country.continent}}</li>
+				</ul>
+
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+			// function doIt(s, n) {
+			//
+			// 	if (s == null) {
+			// 		return '';
+			// 	}
+			//
+			// 	if (isNaN(parseInt(n))) {
+			// 		return '';
+			// 	}
+			// }
+
+			angular.module('MyApp', [])
+				.filter('chContinent', function() {
+
+					return function(countries, continent) {
+
+						return countries.filter(function(country) {
+							return country.continent === continent;
+						});
+
+					}
+
+				})
+				.filter('chAppend', function() {
+
+					return function(value, strToAppend) {
+						return String(value) + String(strToAppend);
+					};
+				})
+				.filter('chUpperCase', ['$log', function($log) {
+
+					// this is the filter function
+					return function(value) {
+						$log.log(value);
+						return String(value).toUpperCase();
+					};
+
+				}])
+				.controller('MyCtrl', function($scope, $filter) {
+					$scope.message = 'People born in Spain rock!';
+
+					$scope.countries = [
+						{ name: 'India', continent: 'Asia' },
+						{ name: 'Nepal', continent: 'Asia' },
+						{ name: 'United Kingdom', continent: 'Europe' },
+						{ name: 'Spain', continent: 'Europe' },
+						{ name: 'United States', continent: 'North America' },
+						{ name: 'Mexico', continent: 'North America' }
+					];
+
+					console.dir($filter('chContinent')($scope.countries, 'Europe'));
+
+					console.dir($scope.$eval("countries | chContinent:'North America'"));
+
+
+				});
+
+		</script>
+	</body>
+</html>

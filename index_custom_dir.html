@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<table ng-controller='MyCtrl'>
+				<tr ng-repeat='car in cars' car-row></tr>
+			</table>
+			<script id="carRowTpl" type="text/ng-template">
+				<td>{{car.make}}</td>
+				<td>{{car.model}}</td>
+				<td>{{car.year}}</td>
+			</script>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.directive('carRow', function() {
+						return {
+							templateUrl: 'carRowTpl',
+							link: function(scope, element, attrs) {
+								console.log(scope);
+							}
+						};
+					})
+					.controller('MyCtrl', function($scope) {
+						$scope.cars = [
+							{ make: 'Ford', model: 'Mustang', year: 1956 },
+							{ make: 'Dodge', model: 'Challenger', year: 1966 },
+							{ make: 'Chevrolet', model: 'Corvette', year: 1976 }
+						];
+					})
+
+		</script>
+	</body>
+</html>

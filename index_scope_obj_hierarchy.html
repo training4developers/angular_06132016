@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<style>
+			div.ng-scope {
+				border: 1px solid red;
+				margin:5px;
+				padding:5px;
+			}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			{{$id}} {{message}}
+			<div ng-controller="MyCtrl">
+				{{$id}} {{message}}
+
+				<div ng-controller="MyCtrl">
+					{{$id}} {{message}}
+				</div>
+				<div ng-controller="MyCtrl">
+					{{$id}} {{message}}
+				</div>
+				<div ng-controller="MyCtrl">
+					{{$id}} {{message}}
+				</div>
+
+			</div>
+			<div ng-controller="MyCtrl">
+				{{$id}} {{message}}
+			</div>
+			<div ng-controller="MyCtrl">
+				{{$id}} {{message}}
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+			var counter = 1;
+
+			angular.module('MyApp', [])
+				.controller('MyCtrl', function($scope) {
+
+					$scope.message = 'Moksha is an awesome lady... ' + counter++;
+
+				})
+				.run(function($rootScope) {
+					$rootScope.message = "Suraj is an awesome guy...";
+				});
+
+		</script>
+	</body>
+</html>

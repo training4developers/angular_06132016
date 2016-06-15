@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.controller('MyCtrl', function($q) {
+
+						$q(function(resolve, reject) {
+
+							setTimeout(function() {
+								resolve()
+							}, 2000);
+
+						}).then(function() {
+
+							console.log('a');
+							return $q(function(resolve, reject) {
+
+								throw Error('food and spa');
+
+								setTimeout(function() {
+									reject('could not resolve');
+								}, 2000);
+							});
+
+						}).then(function() {
+
+							console.log('b');
+							return $q(function(resolve, reject) {
+								setTimeout(function() {
+									resolve()
+								}, 2000);
+							});
+
+						}).catch(function(err) {
+							console.log(err);
+						}).finally(function() {
+							console.log('c');
+						});
+
+
+
+					});
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div my-dir></div>
+			<script id="myDirTpl" type="text/ng-template">
+				<h1>{{message}}!!!!!!!!!</h1>
+			</script>
+		</div>
+
+		<script>
+			'use strict';
+
+				angular.module('MyApp', [])
+					.directive('myDir', function($compile) {
+
+						// directive definition object
+						return {
+							restrict: 'EA',  // angular 2 selector
+							//template: '<h1>{{message}}</h1>', // angular 2 template
+							templateUrl: 'myDirTpl', // angular 2 template
+							link: function(scope, element, attrs) {
+								scope.message = 'Ahmedabad is Moksha & Jimit Country!';
+							}
+
+						};
+
+					});
+
+		</script>
+	</body>
+</html>

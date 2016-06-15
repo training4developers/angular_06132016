@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Angular.js for QA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+			</div>
+			<div ng-controller="MyCtrl2">
+			</div>
+		</div>
+
+		<script>
+			'use strict';
+
+			function Person(firstName, lastName) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+			}
+
+			function person(firstName, lastName) {
+				return {
+					firstName: firstName,
+					lastName: lastName
+				};
+			}
+
+			// instantiating
+			var p = new Person('Suraj', 'Tuladhar');
+
+			// invoking
+			var p2 = person('Moksha','Doshi');
+
+			console.log(p.firstName);
+			console.log(p2.firstName);
+
+			angular.module('MyApp', [])
+				.provider('logger3', function() {
+
+					var prefix = "";
+
+					return {
+
+						setPrefix: function(newPrefix) {
+							prefix = newPrefix
+						},
+
+						// point to the factory function
+						$get: function() {
+
+							return {
+								log: function(msg) {
+									console.log(prefix + msg);
+								}
+							};
+
+						}
+					};
+
+				})
+				.service('logger2', function() {
+
+					var someData = "Hi!"
+
+					this.getData = function() {
+						return someData;
+					};
+
+					this.setData = function(data) {
+						someData = data;
+					};
+
+					this.log = function(message) {
+						console.log(message);
+					};
+
+				})
+				.factory('logger', function() {
+
+					var someData = "Hi!"
+
+					return {
+						getData: function() {
+							return someData;
+						},
+						setData: function(data) {
+							someData = data;
+						},
+						log: function(message) {
+							console.log(message);
+						}
+					};
+
+				})
+				.config(function(logger3Provider) {
+
+					logger3Provider.setPrefix('James is Helpful => ');
+
+				})
+				.controller('MyCtrl', function(logger3) {
+					logger3.log('Arizona rocks!');
+				})
+				.controller("MyCtrl2", function(logger) {
+					//logger.log(logger.getData());
+				});
+
+		</script>
+	</body>
+</html>
