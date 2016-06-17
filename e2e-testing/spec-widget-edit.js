@@ -25,6 +25,10 @@ describe('Angular.js Demo App', function() {
 	// exercise #6 - write a spec which modifies a widget's color, save the change
 	// and assert the change on the widget list
 
+	// select option code
+	// change blue to the desired color
+	// element(by.model('widget.color')).element(By.xpath('//option[text() = \'Blue\']')).click();
+
 	// exercise #7 - create a new spec file for creating a widget, write a spec creating
 	// a widget, and validate the creation in the widget list
 

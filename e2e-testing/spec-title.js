@@ -9,6 +9,13 @@ describe('Angular.js Demo App', function() {
 
   });
 
-	// exercise #1 - move the browser.get function call to a before each
+	// exercise #1 - move the browser.get function call to a before each, and use the following code
+	// to take a screenshot before the 'expect'
+
+	// browser.takeScreenshot().then(function(png) {
+	// 	var stream = fs.createWriteStream("./iscreenshot.png");
+	// 	stream.write(new Buffer(png, 'base64'));
+	// 	stream.end();
+	// });
 
 });

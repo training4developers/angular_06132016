@@ -25,6 +25,12 @@ function HomePage() {
 function EditWidgetPage() {
 
 	this.widgetNameInput = element(by.model('widget.name'));
+	this.widgetColorSelect = element(by.model('widget.color'));
+
+	this.selectOption = function(selectControl, selectValue) {
+		selectControl.element(By.xpath('//option[text() = \'' + selectValue + '\']')).click();
+	};
+
 	this.saveWidgetButton = element(by.partialButtonText('Save Widget'));
 }
 
@@ -41,6 +47,8 @@ describe('Angular.js Demo App', function() {
 
 		var editWidgetPage = new EditWidgetPage();
 		editWidgetPage.widgetNameInput.clear().sendKeys('Modified Widget Name');
+		// example of selecting an option
+		// editWidgetPage.selectOption(editWidgetPage.widgetColorSelect, 'Green');
 		editWidgetPage.saveWidgetButton.click();
 
 		expect(homePage.getWidgetRowColumn(1, 'widget.name')
