@@ -38,4 +38,20 @@ exports.config = {
 		one: ['spec-widget-page-object.js']
 	},
 	rootElement: 'main',
+
+	onPrepare: function() {
+		var reporters = require('jasmine-reporters');
+		jasmine.getEnv().addReporter(new reporters.JUnitXmlReporter({
+			savePath: './build/reports/junit',
+			consolidateAll: false,
+			// modifyReportFileName: function(generatedFileName, suite) {
+      //   return 'test-results';
+      // }
+		}));
+	},
+
+	jasmineNodeOpts: {
+		showColors: true,
+		defaultTimeoutInterval: 30000
+	}
 }
