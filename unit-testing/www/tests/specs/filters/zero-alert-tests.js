@@ -32,4 +32,15 @@ describe("zeroAlert filter tests", function() {
 
 	});
 
+	it("zero alert for non-number", function() {
+
+		var
+			testValue = "rrrr",
+			expectedValue = '<span style="color:red;font-weight:bold;">0</span>',
+			result = zeroAlertFlt(testValue);
+
+		expect(result.$$unwrapTrustedValue()).toEqual(expectedValue);
+
+	});
+
 });
